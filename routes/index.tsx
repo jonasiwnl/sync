@@ -1,11 +1,11 @@
 import { Get } from "../islands/Get.tsx";
-import { Submit } from "../islands/Submit.tsx";
+import { Set } from "../islands/Set.tsx";
 
 export default function Home() {
   return (
     <>
       <Get />
-      <Submit />
+      <Set />
     </>
   );
 }

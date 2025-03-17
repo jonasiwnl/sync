@@ -5,10 +5,10 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_get from "./routes/api/get.ts";
-import * as $api_submit from "./routes/api/submit.ts";
+import * as $api_set from "./routes/api/set.ts";
 import * as $index from "./routes/index.tsx";
 import * as $Get from "./islands/Get.tsx";
-import * as $Submit from "./islands/Submit.tsx";
+import * as $Set from "./islands/Set.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -16,12 +16,12 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/api/get.ts": $api_get,
-    "./routes/api/submit.ts": $api_submit,
+    "./routes/api/set.ts": $api_set,
     "./routes/index.tsx": $index,
   },
   islands: {
     "./islands/Get.tsx": $Get,
-    "./islands/Submit.tsx": $Submit,
+    "./islands/Set.tsx": $Set,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

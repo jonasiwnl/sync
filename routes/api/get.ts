@@ -25,12 +25,20 @@ export const handler = async (
     keys.add(key);
   } else {
     messages.set(key, {
-      message: messageData.message,
+      ...messageData,
       uses: messageData.uses - 1,
     });
   }
 
-  return new Response(JSON.stringify({ message: messageData?.message }), {
-    status: 200,
-  });
+  return new Response(
+    JSON.stringify({
+      message: messageData.message,
+      file: messageData.file,
+      fileType: messageData.fileType,
+      fileName: messageData.fileName,
+    }),
+    {
+      status: 200,
+    },
+  );
 };
