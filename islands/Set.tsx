@@ -33,19 +33,21 @@ export function Set() {
   };
 
   return (
-    <>
-      <h1 class="font-semibold">set</h1>
+    <div class="flex flex-col items-center bg-gray-900 text-gray-100 justify-start min-h-screen pt-16">
+      <h1>set a message</h1>
       <input
         type="text"
         value={message}
         onInput={(event) =>
           setMessage((event.target as HTMLInputElement).value)}
-        placeholder="Enter message"
+        placeholder="enter message"
+        class="m-2 p-2 w-72 bg-gray-800 text-gray-100 rounded"
       />
       <input
         type="file"
         onChange={(event) =>
           setFile((event.target as HTMLInputElement).files?.[0] || null)}
+        class="m-2 p-2 w-72 bg-gray-800 text-gray-100 rounded"
       />
       <input
         type="number"
@@ -53,9 +55,16 @@ export function Set() {
         onInput={(event) =>
           setUses(parseInt((event.target as HTMLInputElement).value))}
         placeholder="Uses"
+        class="m-2 p-2 w-72 bg-gray-800 text-gray-100 rounded"
       />
-      <button type="submit" onClick={handleSubmit}>submit</button>
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        class="m-2 p-2 w-72 bg-blue-500 text-white rounded"
+      >
+        submit
+      </button>
       {key !== "" && <p>key: {key}</p>}
-    </>
+    </div>
   );
 }

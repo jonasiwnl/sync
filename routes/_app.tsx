@@ -1,4 +1,6 @@
 import { type PageProps } from "$fresh/server.ts";
+import { Header } from "../components/Header.tsx";
+
 export default function App({ Component }: PageProps) {
   return (
     <html>
@@ -8,7 +10,8 @@ export default function App({ Component }: PageProps) {
         <title>fresh-site</title>
         <link rel="stylesheet" href="/styles.css" />
       </head>
-      <body>
+      <body class="bg-gray-900 font-semibold">
+        <Header />
         <Component />
       </body>
     </html>
