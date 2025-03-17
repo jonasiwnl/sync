@@ -40,7 +40,7 @@ export function Set() {
   };
 
   return (
-    <div class="flex flex-col items-center bg-gray-900 text-gray-100 justify-start min-h-screen pt-16">
+    <div class="flex flex-col items-center text-gray-100 pt-16">
       <h1>set a message</h1>
       <input
         type="text"

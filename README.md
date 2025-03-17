@@ -1,4 +1,4 @@
-# Command-C
+# GetHub
 
 Easily transfer files between computers*.
 

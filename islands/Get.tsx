@@ -41,7 +41,7 @@ export function Get() {
   };
 
   return (
-    <div class="flex flex-col items-center bg-gray-900 text-gray-100 justify-start min-h-screen pt-16">
+    <div class="flex flex-col items-center text-gray-100 pt-16">
       <h1>get a message</h1>
       <input
         type="text"
@@ -69,14 +69,6 @@ export function Get() {
               src={fileUrl}
               alt={fileName || "preview"}
               class="max-w-xs max-h-xs"
-            />
-          )}
-          {fileType === "application/pdf" && (
-            <embed
-              src={fileUrl}
-              type="application/pdf"
-              width="600"
-              height="400"
             />
           )}
         </>
