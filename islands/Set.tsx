@@ -1,10 +1,11 @@
-import { useState } from "preact/hooks";
+import { useState, useRef } from "preact/hooks";
 
 export function Set() {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const [uses, setUses] = useState(1);
+  const [uses, setUses] = useState("");
   const [key, setKey] = useState("");
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSubmit = async () => {
     const formData = new FormData();
@@ -29,6 +30,12 @@ export function Set() {
     const data = await response.json();
     if (response.ok) {
       setKey(data.key);
+      setMessage("");
+      setFile(null);
+      setUses("");
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     }
   };
 
@@ -45,6 +52,7 @@ export function Set() {
       />
       <input
         type="file"
+        ref={fileInputRef}
         onChange={(event) =>
           setFile((event.target as HTMLInputElement).files?.[0] || null)}
         class="m-2 p-2 w-72 bg-gray-800 text-gray-100 rounded"
@@ -53,8 +61,8 @@ export function Set() {
         type="number"
         value={uses}
         onInput={(event) =>
-          setUses(parseInt((event.target as HTMLInputElement).value))}
-        placeholder="Uses"
+          setUses((event.target as HTMLInputElement).value)}
+        placeholder="uses (defaults to 1)"
         class="m-2 p-2 w-72 bg-gray-800 text-gray-100 rounded"
       />
       <button
