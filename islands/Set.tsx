@@ -1,13 +1,17 @@
-import { useState, useRef } from "preact/hooks";
+import { useRef, useState } from "preact/hooks";
 
 export function Set() {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [uses, setUses] = useState("");
   const [key, setKey] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSubmit = async () => {
+    setLoading(true);
+
     const formData = new FormData();
 
     if (!file && !message) {
@@ -29,6 +33,7 @@ export function Set() {
     });
     const data = await response.json();
     if (response.ok) {
+      setError("");
       setKey(data.key);
       setMessage("");
       setFile(null);
@@ -36,7 +41,11 @@ export function Set() {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
+    } else {
+      setError(data.error);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -60,18 +69,19 @@ export function Set() {
       <input
         type="number"
         value={uses}
-        onInput={(event) =>
-          setUses((event.target as HTMLInputElement).value)}
+        onInput={(event) => setUses((event.target as HTMLInputElement).value)}
         placeholder="uses (defaults to 1)"
         class="m-2 p-2 w-72 bg-gray-800 text-gray-100 rounded"
       />
       <button
         type="submit"
+        disabled={loading}
         onClick={handleSubmit}
         class="m-2 p-2 w-72 bg-blue-500 text-white rounded"
       >
-        submit
+        {loading ? "loading..." : "submit"}
       </button>
+      {error && <p class="text-red-500">error: {error}</p>}
       {key !== "" && <p>key: {key}</p>}
     </div>
   );

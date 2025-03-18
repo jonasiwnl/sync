@@ -6,8 +6,12 @@ export function Get() {
   const [fileUrl, setFileUrl] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
   const [fileType, setFileType] = useState<string | null>(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    setLoading(true);
+
     const response = await fetch("/api/get", {
       method: "POST",
       headers: {
@@ -18,6 +22,7 @@ export function Get() {
     const data = await response.json();
     if (response.ok) {
       setMessage(data.message);
+      setError("");
       if (data.file) {
         const byteCharacters = atob(data.file);
         const byteNumbers = new Array(byteCharacters.length);
@@ -33,11 +38,14 @@ export function Get() {
         setFileType(data.fileType);
       }
     } else {
+      setError(data.error);
       setMessage("");
       setFileUrl(null);
       setFileName(null);
       setFileType(null);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -52,11 +60,13 @@ export function Get() {
       />
       <button
         type="submit"
+        disabled={loading}
         onClick={handleSubmit}
         class="m-2 p-2 w-72 bg-blue-500 text-white rounded"
       >
-        submit
+        {loading ? "loading..." : "submit"}
       </button>
+      {error && <p class="text-red-500">error: {error}</p>}
       {message !== "" && <p>message: {message}</p>}
       {fileUrl && (
         <>
