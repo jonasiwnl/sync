@@ -1,4 +1,4 @@
-# GetHub
+# Sync
 
 Easily transfer files between computers*.
 
