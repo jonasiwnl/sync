@@ -38,6 +38,10 @@ export function Get() {
         setFileUrl(url);
         setFileName(data.fileName);
         setFileType(data.fileType);
+      } else {
+        setFileUrl(null);
+        setFileName(null);
+        setFileType(null);
       }
     } else {
       setError(data.error);

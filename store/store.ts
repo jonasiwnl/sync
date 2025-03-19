@@ -8,7 +8,7 @@ export type MessageData = {
   fileName?: string;
 };
 
-export const messages: Map<string, MessageData> = new Map();
+export const messages: Record<string, MessageData> = {};
 
 export async function loadKeysFromFile(filePath: string): Promise<Set<string>> {
   const data = await Deno.readTextFile(filePath);

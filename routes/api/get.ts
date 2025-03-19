@@ -13,7 +13,7 @@ export const handler = async (
     });
   }
 
-  const messageData = messages.get(key);
+  const messageData = messages[key];
   if (!messageData) {
     return new Response(JSON.stringify({ error: "key not found" }), {
       status: 404,
@@ -21,14 +21,12 @@ export const handler = async (
   }
 
   if (messageData.uses <= 1) {
-    messages.delete(key);
+    delete messages[key];
     keys.add(key);
   } else {
-    messages.set(key, {
-      ...messageData,
-      uses: messageData.uses - 1,
-    });
+    messages[key].uses -= 1;
   }
+
 
   return new Response(
     JSON.stringify({

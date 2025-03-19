@@ -20,7 +20,7 @@ export const handler = async (
 
   const form = await req.formData();
 
-  const uses = parseInt(form.get("uses") as string) ?? 1;
+  const uses = isNaN(parseInt(form.get("uses") as string)) ? 1 : parseInt(form.get("uses") as string);
   const message = form.get("message") as string ?? "";
 
   let fileName = "";
@@ -56,13 +56,7 @@ export const handler = async (
 
   const idx = Math.floor(Math.random() * keys.size);
   const key = Array.from(keys)[idx];
-  messages.set(key, {
-    message: message,
-    file: base64,
-    fileName: fileName,
-    fileType: fileType,
-    uses,
-  });
+  messages[key] = { message, file: base64, fileName, fileType, uses };
   keys.delete(key);
 
   return new Response(JSON.stringify({ key, error: null }), { status: 200 });
