@@ -71,7 +71,7 @@ export function Set() {
 
   return (
     <div class="flex flex-col items-center text-gray-100 pt-16 mb-16">
-      <h1>set a message</h1>
+      <h1>send</h1>
       <input
         type="text"
         value={message}

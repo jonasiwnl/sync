@@ -77,7 +77,7 @@ export function Get() {
 
   return (
     <div class="flex flex-col items-center text-gray-100 pt-16">
-      <h1>get a message</h1>
+      <h1>get</h1>
       <input
         type="text"
         value={key}

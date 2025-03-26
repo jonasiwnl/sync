@@ -1,4 +1,4 @@
-# Sync
+# FileSync
 
 Easily transfer files between computers*.
 

@@ -20,7 +20,9 @@ export const handler = async (
 
   const form = await req.formData();
 
-  const uses = isNaN(parseInt(form.get("uses") as string)) ? 1 : parseInt(form.get("uses") as string);
+  const uses = isNaN(parseInt(form.get("uses") as string))
+    ? 1
+    : parseInt(form.get("uses") as string);
   const message = form.get("message") as string ?? "";
 
   let fileName = "";

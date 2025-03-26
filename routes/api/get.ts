@@ -27,7 +27,6 @@ export const handler = async (
     messages[key].uses -= 1;
   }
 
-
   return new Response(
     JSON.stringify({
       message: messageData.message,
